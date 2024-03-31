@@ -1,0 +1,93 @@
+Introdução ao curso de Imersão Phyton - Ministrado pela Alura
+Nessa primeira aula foi baixado um arquivo referente a bolsa de valores do ano de 2023.
+A onde foi tratada essa tabela para que pudesse ser mostrado as seguintes informações
+Na aba 'Principal' foi adicionado as seguintes colunas:
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                                    // AULA 01 //
+
+# Coluna  L - Variação % #
+Utilizamos a seguinte formula = coluna C /100, para encontrar a porcentagem de cada Ativo.
+
+# Coluna M - Valor Inicial (R%)
+Utilizamos a seguinte formula = Coluna C/(L2+1), para encontrar o valor que se iniciou a bolsa de valores de cada ativo expecifico
+
+# Coluna N - Quantidade de ações
+Utilizamos a seguinte formula = PROCV(A2;total_de_acoes!A:B;2;0),
+nessa coluna utulizamos duas planilhas, solicitando que ela usasse como base a coluna 'A' que enctra os Ativos da bolsa de valores 
+e procurasse na planilha total de açoes (un) vendidas.
+
+# Coluna O - Variação em Reais
+Utilizamos a seguinte formula = =(C2-M2)*N2,
+nessa coluna utilizamos as colunas C ( último (r$)) menos a coluna M ( Valor Inicial (R%)) vezes a coluna N (Quantidade de ações)
+nessa coluna conseguimos vizualizar quanto em reais teve de variações durante o ano, tendo em vista que a coluna 'C' 
+ela mostra o valor que o ativo fechou e a coluna M o quanto ela fechou, vezes a quantidade de açoes vendida ou compras durante o periodo 
+
+Coluna P - Resultado 
+Utilizamos a seguinte formula = =SE(O2>0;"Subiu";SE(O2<0;"Desceu";"Estável"))
+nessa coluna podemos olhar quais ativos subiram, desceram ou ficou estável durante o ano de 2023
+para realizar esse parametro e mostrar cada ativo sua performace a formula 'SE', 
+Que quer dizer.. 
+'SE' a coluna O for (>) maior que zero escreva subiu, agora 'SE' ela for (<) 0 escreva desceu, 'SE' não teve nenhuma auteração escreva Estável.
+
+Coluna Q - Nome da Empresa
+Utilizamos a seguinte formula = =PROCV(A2;ticker!A:B;2;0)
+nessa coluna utulizamos duas planilhas, solicitando que ela usasse como base a coluna 'A' que enctra os Ativos da bolsa de valores 
+e procurasse na planilha Tickers ( Nome do Ativo = Nome da empresa).
+
+Coluna R - Segmentos
+Utilizamos a seguinte formula = =PROCV(Q2;Chatgpt!A:C;2;0)
+Utilizando como base a coluna 'Q' da planilha 'Principal', solicitamos ao chatgpt que nos informase o segmento de cada ativo, criando entao uma nova planilha.
+
+Coluna S - Idade
+Utilizamos a seguinte formula = =PROCV(Q2;Chatgpt!A:C;3;0)
+solicitamos ao chatgpt que nos informase a idade de cada ativo, criando entao uma nova coluna informando a idade na planilha Chatgpt.
+
+Coluna T - Categoria por idade
+Utilizamos a seguinte formula = =SE(S2>100;"Mais de 100 anos";SE(S2<50;"Menos de 50 anos";"Entre 50 e 100 anos"))
+nessa coluna podemos olhar quais ativos tem 'Mais de 100 anos, Menos de 50 anos ou Entre 50 e 100 anos durante o ano de 2023
+para realizar esse parametro e mostrar cada ativo sua performace a formula 'SE', 
+Que quer dizer.. 
+'SE' a coluna 'S' for (>) maior que zero escreva 'Mais de 100 anos', agora 'SE' ela for (<) 0 escreva Menos de 50 anos, 
+'SE' o ativo possuir entre 50 e 100 anos escreva Entre 50 e 100 anos.
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                                   // AULA 01 E 02 //
+
+Planilha ANALISE
+
+# Nesta nova planilha criamos gráficos para poder ter uma dimensão melhor entre as planilhas:
+
+- Principal          
+- Total de açoes
+- Tickers
+- Chatgpt
+
+Para a criação dessas planilhas utilizamos os seguimentos
+
+- a maior ativo
+=MÁXIMO(Principal!O:O)
+
+- o menor ativo
+=MÍNIMO(Principal!O:O)
+
+- a média entre o maior e o menor
+=MÉDIA(Principal!O:O)
+
+- média de quem subiu
+=MÉDIASE(Principal!P:P;"Subiu";Principal!O:O)
+
+- média de quem desceu
+=MÉDIASE(Principal!P:P;"Desceu";Principal!O:O)
+
+
+
+
+
